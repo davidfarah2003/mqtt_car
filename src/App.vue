@@ -1,0 +1,58 @@
+<template>
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component" />
+    </keep-alive>
+  </router-view>
+
+</template>
+
+<script>
+import {provide} from "vue";
+import mqttUtils from "@/composables/mqttUtils.mjs";
+import Home from "@/views/Home";
+import apiUtils from "@/composables/apiUtils.mjs";
+import Nav_overview from "@/components/Home/Nav_overview.vue";
+
+export default {
+  components: {Nav_overview, Home},
+  setup() {
+    //They are created here to be unique between views
+    let API = new apiUtils()
+    provide('apiClient', API)
+
+    let mqttClient = mqttUtils.getMqttClient()
+    provide('mqttClient', mqttClient) //provide the client to components that need it (import via inject(key)
+  },
+}
+</script>
+
+<style>
+
+:root {
+  all: unset;
+  font-family: 'Fira sans', sans-serif;
+  background: var(--primary);
+
+  --contours: #41434a;
+  --primary: #686868;
+  --primary-dark: #222326;
+  --secondary: #c22e2e;
+  --title_color: white;
+  --text_color: white;
+  --h4_color: #ffbf4e;
+}
+
+#app {
+  background: var(--primary);
+  font-size: 15px;
+  color: var(--text_color);
+}
+
+
+router-view{
+  min-height: 600px;
+  height: auto !important;
+}
+
+</style>

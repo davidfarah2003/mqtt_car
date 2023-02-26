@@ -1,0 +1,2 @@
+Install MQTT broker: sudo pacman -S mosquitto (for manjaro, may vary depending on dist)
+Start MQTT server (broker): mosquitto -c path/to/.conf

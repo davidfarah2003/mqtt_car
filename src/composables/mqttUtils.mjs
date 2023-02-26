@@ -112,8 +112,8 @@ export default class MqttUtils {
         const options = {
             keepalive: 60,
             clientId: clientId + Math.random().toString(16).substring(2, 10),
-            username: 'ssb',
-            password: 'ssbgs',
+            username: 'mqtt_car',
+            password: 'mqttcar',
             protocolId: 'MQTT',
             protocolVersion: 4,
             clean: true,

@@ -1,3 +1,4 @@
+
 export default class ConfigUtils {
     #configObject = null
     #dataObject = null
@@ -10,7 +11,6 @@ export default class ConfigUtils {
         try {
             this.#configObject = configObject
             this.#buildDataObject()
-
         } catch (e) {
             console.log(e);
             process.exit(1)
@@ -25,14 +25,12 @@ export default class ConfigUtils {
         this.#dataObject = {}
         if (this.#configObject) {
             Object.entries(this.#configObject).forEach(([componentName, component]) => {
-                Object.entries(component).forEach(([groupName, group]) => {
-                    Object.entries(group).forEach(([fieldName, field]) => {
+                Object.entries(component).forEach(([subTopicName, subtopic]) => {
                         this.#createNestedObject(
                             this.#dataObject,
-                            [componentName, groupName, fieldName],
-                            [null, field["unit"]]
+                            [componentName, subTopicName],
+                            [null, subtopic["unit"]]
                             )
-                    })
                 })
             })
         }
@@ -77,5 +75,4 @@ export default class ConfigUtils {
     getDataObject(){
         return this.#dataObject
     }
-
 }

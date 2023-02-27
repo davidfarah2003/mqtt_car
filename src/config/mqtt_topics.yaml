@@ -1,0 +1,8 @@
+- name: motor
+  subtopics:
+    - name: curr_rpm
+      unit: "rpm"
+      type: output
+    - name: set_speed
+      unit: "m/s"
+      type: input

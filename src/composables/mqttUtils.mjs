@@ -87,17 +87,6 @@ export default class MqttUtils {
         })
     }
 
-    /**
-     * Send a predefined command to the boat CAN
-     * @param {String} commandName predetermined name
-     * @param {[Number]} data array containing the fields values
-     */
-    sendCommand(commandName, data) {
-        console.log(commandName, data)
-        this.send("dahu/execute_command", JSON.stringify([commandName, data]))
-    }
-
-
 //---------------------------------------------STATIC METHODS-----------------------------------------------
     /**
      * Asynchronous method that returns a promise, from which we can obtain the mqtt client if resolved.
@@ -105,9 +94,9 @@ export default class MqttUtils {
      * @returns client
      */
     static async getMqttClient(){
-        const clientId = "ssb_"
-        //const host = 'ws://34.65.125.98:9001'
-        const host = 'ws://localhost:9001'
+        const clientId = "MIT_"
+        const host = 'ws://34.65.125.135:9001'
+        //const host = 'ws://localhost:9001'
 
         const options = {
             keepalive: 60,

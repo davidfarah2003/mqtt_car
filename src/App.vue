@@ -17,10 +17,6 @@ import Nav_overview from "@/components/Home/Nav_overview.vue";
 export default {
   components: {Nav_overview, Home},
   setup() {
-    //They are created here to be unique between views
-    let API = new apiUtils()
-    provide('apiClient', API)
-
     let mqttClient = mqttUtils.getMqttClient()
     provide('mqttClient', mqttClient) //provide the client to components that need it (import via inject(key)
   },

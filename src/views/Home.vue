@@ -1,17 +1,9 @@
 <template>
-  <section>
-    <connected-view v-slot="data" class="app-main">
-      <b-card class="status-panel" header="Status Panel" header-class="card-title">
-        <status_panel @subscribeToFields="data.subscribeToFields" @updateData="data.updateChildData"
-                      :canUpdate="data.canUpdateChildData" :connected="data.connected"></status_panel>
-      </b-card>
-    </connected-view>
-  </section>
+
 </template>
 
 <script>
 
-import ConnectedView from "@/views/ConnectedView";
 import Status_panel from "@/components/Home/Status_panel";
 import Ctrl_panel from "@/components/Home/Ctrl_panel.vue";
 import Battery_summary from "@/components/Home/Batt_summary.vue";
@@ -19,7 +11,7 @@ import Dashboard from "@/components/Home/Dashboard.vue";
 
 export default {
   name: "Home",
-  components: {Dashboard, Battery_summary, Ctrl_panel, Status_panel: Status_panel, ConnectedView},
+  components: {Dashboard, Battery_summary, Ctrl_panel, Status_panel: Status_panel},
 }
 
 </script>

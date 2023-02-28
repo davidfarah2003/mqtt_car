@@ -4,14 +4,9 @@
 
 <script>
 
-import Status_panel from "@/components/Home/Status_panel";
-import Ctrl_panel from "@/components/Home/Ctrl_panel.vue";
-import Battery_summary from "@/components/Home/Batt_summary.vue";
-import Dashboard from "@/components/Home/Dashboard.vue";
-
 export default {
   name: "Home",
-  components: {Dashboard, Battery_summary, Ctrl_panel, Status_panel: Status_panel},
+  components: {},
 }
 
 </script>

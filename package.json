@@ -5,8 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "serve_linux": "PORT=8080 vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit"
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "@babel/plugin-proposal-private-methods": "^7.18.6",
@@ -14,10 +13,8 @@
     "bootstrap": "^5.2.3",
     "bootstrap-vue-next": "^0.7.1",
     "core-js": "^3.8.3",
-    "js-yaml": "^4.1.0",
     "precompiled-mqtt": "^4.3.14-beta",
     "vue": "^3.2.41",
-    "vue-final-modal": "^3.4.11",
     "vue-router": "^4.0.3",
     "vue-speedometer": "^2.0.0"
   },
@@ -28,8 +25,6 @@
     "@vue/cli-service": "~5.0.0",
     "@vue/test-utils": "^2.0.0-0",
     "@vue/vue3-jest": "^27.0.0-alpha.1",
-    "babel-jest": "^27.0.6",
-    "jest": "^27.0.5",
     "sass-loader": "^13.2.0",
     "unplugin-vue-components": "^0.23.0"
   }

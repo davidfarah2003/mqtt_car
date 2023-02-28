@@ -2,7 +2,7 @@
   <section>
     <div class="form-box">
       <Joystick
-          :style="{margin: '20px',}"
+          :style="{margin: '0px',}"
           @move="move"
           @start="start"
           @stop="stop"
@@ -16,7 +16,7 @@
           baseImage="https://texturelabs.org/wp-content/uploads/Texturelabs_Grunge_239thumbnail.jpg"
       />
       <Joystick
-          :style="{margin: '20px',}"
+          :style="{margin: '0px',}"
           @move="move"
           @start="start"
           @stop="stop"
@@ -88,23 +88,26 @@ export default {
   margin: 0;
   padding: 0;
 }
+
 section{
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   width: 100%;
+  height: 100%;
 
   background: url("@/assets/wallpaper2.jpg") no-repeat center;
   background-size: cover;
 }
+
 .form-box{
   position: relative;
   width: 80%;
-  height: 50%;
+  height: 50vh;
 
-  min-height: 250px;
-  min-width: 400px;
+  min-height: 35vh;
+  min-width: 200px;
   background: transparent;
   border: 2px solid rgba(255,255,255,0.5);
   border-radius: 20px;
@@ -114,18 +117,51 @@ section{
   justify-content: space-around;
   align-items: center;
 
-  margin-top: 30%;
+  margin-top: 30vh;
 }
 
-button{
-  width: 100%;
-  height: 40px;
-  border-radius: 40px;
-  background: #fff;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  font-size: 1em;
-  font-weight: 600;
+@media only screen and (min-width: 1000px) {
+  section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+
+    background: url("@/assets/wallpaper2.jpg") no-repeat center;
+    background-size: cover;
+  }
+  .form-box{
+    position: relative;
+    width: 80%;
+    height: 50%;
+
+    min-height: 250px;
+    min-width: 400px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-top: 25%;
+  }
+
+  button{
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+  }
 }
+
+
 </style>

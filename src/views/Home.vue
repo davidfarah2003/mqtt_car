@@ -1,12 +1,46 @@
 <template>
-
+  {{dataObject}}
 </template>
 
 <script>
 
+import {inject, ref} from "vue";
+import mqttUtils from "@/composables/mqttUtils.mjs";
+
 export default {
   name: "Home",
   components: {},
+  setup(){
+    let dataObject = ref({
+      test: {
+        test2 : 1
+      }
+    }
+    )
+
+    updateDataObject("test/test2", 2)
+
+    /**
+     * Create an mqttUtils instance with arguments the client and a callback to update data
+     * @type {MqttUtils}
+     */
+    const mqttUtil = new mqttUtils(inject('mqttClient'), (topic, message) => {updateDataObject(topic, message)})
+
+    function updateDataObject(topic, message){
+      const parts = topic.split('/');
+      const limit = parts.length - 1;
+      let object = dataObject.value;
+
+      for (let i = 0; i < limit; ++i) {
+        const key = parts[i];
+        object = object[key] ?? (object[key] = { });
+      }
+      const key = parts[limit];
+      object[key] = message;
+    }
+
+    return {dataObject}
+  }
 }
 
 </script>

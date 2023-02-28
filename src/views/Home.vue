@@ -1,35 +1,27 @@
 <template>
   <section>
     <div class="form-box">
-
-      <div class="form-value">
-        <form action="">
-          <h2>Login</h2>
-          <div class="inputbox">
-            <ion-icon name="mail-outline"></ion-icon>
-            <input type="email" required>
-            <label for="">Email</label>
-          </div>
-          <div class="inputbox">
-            <ion-icon name="lock-closed-outline"></ion-icon>
-            <input type="password" required>
-            <label for="">Password</label>
-          </div>
-          <div class="forget">
-            <label for=""><input type="checkbox">Remember Me  <a href="#">Forget Password</a></label>
-
-          </div>
-          <button>Log in</button>
-          <div class="register">
-            <p>Don't have a account <a href="#">Register</a></p>
-          </div>
-        </form>
-      </div>
+      <Joystick
+          :style="{margin: '50px',}"
+          @move="move"
+          @start="start"
+          @stop="stop"
+          :size="146"
+          :stickSize="64"
+          stickColor="orange"
+          :throttle="255"
+          :disabled="false"
+          :sticky="false"
+          :followCursor="false"
+          baseColor="grey"
+          stickImage="https://media.istockphoto.com/id/1419117748/photo/old-wall-texture-cement-dirty-gray-with-black-background-abstract-grey-and-silver-color.jpg?b=1&s=170667a&w=0&k=20&c=KI-m7WiMl2YDY5nSyAxxsta5ZPwjY1x6WwSCRdZq-VA="
+          baseImage="https://texturelabs.org/wp-content/uploads/Texturelabs_Grunge_239thumbnail.jpg"
+      />
     </div>
   </section>
 </template>
 
-<script lang="ts">
+<script>
 
 import {inject, ref} from "vue";
 import mqttUtils from "@/composables/mqttUtils.mjs";

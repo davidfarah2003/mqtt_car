@@ -26,7 +26,6 @@ export default {
 :root {
   all: unset;
   font-family: 'Fira sans', sans-serif;
-  background: var(--primary);
 
   --contours: #41434a;
   --primary: #686868;
@@ -38,7 +37,6 @@ export default {
 }
 
 #app {
-  background: var(--primary);
   font-size: 15px;
   color: var(--text_color);
 }

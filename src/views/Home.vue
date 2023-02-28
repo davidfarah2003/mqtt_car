@@ -2,18 +2,30 @@
   <section>
     <div class="form-box">
       <Joystick
-          :style="{margin: '50px',}"
+          :style="{margin: '20px',}"
           @move="move"
           @start="start"
           @stop="stop"
-          :size="146"
-          :stickSize="64"
-          stickColor="orange"
-          :throttle="255"
+          :size="120"
+          :stickSize="45"
+          :throttle="100"
           :disabled="false"
           :sticky="false"
           :followCursor="false"
-          baseColor="grey"
+          stickImage="https://media.istockphoto.com/id/1419117748/photo/old-wall-texture-cement-dirty-gray-with-black-background-abstract-grey-and-silver-color.jpg?b=1&s=170667a&w=0&k=20&c=KI-m7WiMl2YDY5nSyAxxsta5ZPwjY1x6WwSCRdZq-VA="
+          baseImage="https://texturelabs.org/wp-content/uploads/Texturelabs_Grunge_239thumbnail.jpg"
+      />
+      <Joystick
+          :style="{margin: '20px',}"
+          @move="move"
+          @start="start"
+          @stop="stop"
+          :size="120"
+          :stickSize="45"
+          :throttle="100"
+          :disabled="false"
+          :sticky="false"
+          :followCursor="false"
           stickImage="https://media.istockphoto.com/id/1419117748/photo/old-wall-texture-cement-dirty-gray-with-black-background-abstract-grey-and-silver-color.jpg?b=1&s=170667a&w=0&k=20&c=KI-m7WiMl2YDY5nSyAxxsta5ZPwjY1x6WwSCRdZq-VA="
           baseImage="https://texturelabs.org/wp-content/uploads/Texturelabs_Grunge_239thumbnail.jpg"
       />
@@ -88,17 +100,23 @@ section{
 }
 .form-box{
   position: relative;
-  width: 400px;
-  height: 450px;
+  width: 60%;
+  height: 50%;
+
+  min-height: 250px;
+  min-width: 400px;
   background: transparent;
   border: 2px solid rgba(255,255,255,0.5);
   border-radius: 20px;
   backdrop-filter: blur(15px);
+
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 
+  margin-top: 20%;
 }
+
 h2{
   font-size: 2em;
   color: #fff;

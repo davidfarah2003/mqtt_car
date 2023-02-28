@@ -156,29 +156,27 @@ export default class MqttUtils {
      * Method that extracts data from receivedData using the structure convention, then updates the values in dataObject
      * @param receivedData raw json received from mqtt broker
      * @param dataObject javascript json-like object reference to update (ref)
-     * @param dataIsPresent Boolean specifying if the dataObject is fetched from the api
      */
-    static updateDataFromJSON(receivedData, dataObject, dataIsPresent) {
-        if (dataIsPresent) {
-            const parsed = JSON.parse(receivedData)
-            let component_name = ""
-            let message_name = ""
-            let field_name = ""
+    static updateDataObject(receivedData, dataObject) {
 
-            try {
-                component_name = parsed["component_name"]
-                message_name = parsed["group_name"]
+        let component_name = ""
+        let message_name = ""
+        let field_name = ""
 
-                parsed["fields"].forEach((sensor) => {
-                    field_name = sensor["field_name"]
+        try {
+            component_name = parsed["component_name"]
+            message_name = parsed["group_name"]
 
-                    if(sensor["field_name"] === undefined) {throw new Error("Received JSON is not well formatted")}
-                    dataObject.value[component_name][message_name][field_name][0] = sensor["value"]
-                })
-            }
-            catch (err) {
-                console.log(err)
-            }
+            parsed["fields"].forEach((sensor) => {
+                field_name = sensor["field_name"]
+
+                if(sensor["field_name"] === undefined) {throw new Error("Received JSON is not well formatted")}
+                dataObject.value[component_name][message_name][field_name][0] = sensor["value"]
+            })
         }
+        catch (err) {
+            console.log(err)
+        }
+
     }
 }

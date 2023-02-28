@@ -11,11 +11,9 @@
 import {provide} from "vue";
 import mqttUtils from "@/composables/mqttUtils.mjs";
 import Home from "@/views/Home";
-import apiUtils from "@/composables/apiUtils.mjs";
-import Nav_overview from "@/components/Home/Nav_overview.vue";
 
 export default {
-  components: {Nav_overview, Home},
+  components: {Home},
   setup() {
     let mqttClient = mqttUtils.getMqttClient()
     provide('mqttClient', mqttClient) //provide the client to components that need it (import via inject(key)
@@ -44,7 +42,6 @@ export default {
   font-size: 15px;
   color: var(--text_color);
 }
-
 
 router-view{
   min-height: 600px;

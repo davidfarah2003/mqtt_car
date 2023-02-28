@@ -103,8 +103,8 @@ section{
 
 .form-box{
   position: relative;
-  width: 80%;
-  height: 50vh;
+  width: 90%;
+  height: 55vh;
 
   min-height: 35vh;
   min-width: 200px;
@@ -117,7 +117,7 @@ section{
   justify-content: space-around;
   align-items: center;
 
-  margin-top: 30vh;
+  margin-top: 37vh;
 }
 
 @media only screen and (min-width: 1000px) {

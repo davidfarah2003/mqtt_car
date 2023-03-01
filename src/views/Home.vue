@@ -6,12 +6,14 @@
 
     <div class="live_info_box box_container">
       <vue-speedometer
-          :width="200"
-          :height="150"
-          :ringWidth="23"
-          :needleHeightRatio="0.65"
+          :width="width > 1000 ? 200: 150"
+          :height="width > 1000 ? 150: 105"
+          :ringWidth="width > 1000 ? 23: 10"
+          :needleHeightRatio="width > 1000 ? 0.65: 0.55"
+
           :maxSegmentLabels="0"
           :segments="50"
+          :needleTransitionDuration="200"
           :value = "dataObject.current_throttle"
           :minValue="-100"
           :maxValue="100"
@@ -26,11 +28,13 @@
 
     <div class="live_info_box box_container">
       <vue-speedometer
-          :width="200"
-          :height="150"
-          :ringWidth="23"
-          :needleHeightRatio="0.65"
+          :width="width > 1000 ? 200: 150"
+          :height="width > 1000 ? 150: 105"
+          :ringWidth="width > 1000 ? 23: 10"
+          :needleHeightRatio="width > 1000 ? 0.65: 0.55"
+
           :maxSegmentLabels="0"
+          :needleTransitionDuration="200"
           :segments="5"
           :value = "dataObject.current_rotation"
           :minValue="-30"
@@ -44,8 +48,8 @@
       />
     </div>
 
-    <div class="joysticks box_container">
 
+    <div class="joysticks box_container">
 
       <div class="joystick">
         <p>Throttle</p>
@@ -87,10 +91,9 @@
 
   </section>
 </template>
-
 <script>
 
-import {inject, ref} from "vue";
+import {computed, inject, onMounted, onUnmounted, ref} from "vue";
 import mqttUtils from "@/composables/mqttUtils.mjs";
 import {Joystick} from "vue-joystick-component";
 import VueSpeedometer from "vue-speedometer";
@@ -101,6 +104,13 @@ export default {
   components: {Joystick, VueSpeedometer},
 
   setup(){
+
+    let windowWidth = ref(window.innerWidth)
+    const onWidthChange = () => windowWidth.value = window.innerWidth
+    onMounted(() => window.addEventListener('resize', onWidthChange))
+    onUnmounted(() => window.removeEventListener('resize', onWidthChange))
+    const width = computed(() => windowWidth.value)
+
     let dataObject = ref({
       current_throttle : 0,
       current_rotation : 0,
@@ -138,7 +148,7 @@ export default {
       dataObject.value.current_rotation = round(x*30)
     }
 
-    return {dataObject, stop_throttle, start_throttle, move_throttle, stop_direction, start_direction, move_direction}
+    return {dataObject, width, stop_throttle, start_throttle, move_throttle, stop_direction, start_direction, move_direction}
   }
 }
 
@@ -153,13 +163,15 @@ export default {
 
 section{
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
 
+  min-height: 100vh;
   width: 100%;
-  height: 100%;
 
+  object-fit: cover;
   background: url("@/assets/wallpaper2.jpg") no-repeat center;
+
   background-size: cover;
 }
 
@@ -171,10 +183,10 @@ section{
 }
 
 .joysticks{
-  position: relative;
+  position: absolute;
 
   width: 90%;
-  height: 55vh;
+  height: 54vh;
   min-height: 35vh;
   min-width: 200px;
 
@@ -182,7 +194,25 @@ section{
   justify-content: space-around;
   align-items: center;
 
-  margin-top: 37vh;
+  margin-top: 40vh;
+}
+
+.joystick {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  row-gap: 0.5rem;
+}
+
+.joystick p {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.live_info_box{
+  height: fit-content;
+  margin-top: 4vh;
 }
 
 @media only screen and (min-width: 1000px) {
@@ -240,6 +270,7 @@ section{
     align-items: center;
     row-gap: 1rem;
   }
+
   .joystick p {
     font-size: 1.1rem;
     font-style: italic;

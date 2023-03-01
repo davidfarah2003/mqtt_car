@@ -56,11 +56,10 @@
         <Joystick
             :style="{margin: '0px',}"
             @move="move_throttle"
-            @start="start_throttle"
             @stop="stop_throttle"
             :size="120"
             :stickSize="40"
-            :throttle="100"
+            :throttle="40"
             :disabled="false"
             :sticky="false"
             :followCursor="false"
@@ -74,11 +73,10 @@
         <Joystick
             :style="{margin: '0px',}"
             @move="move_direction"
-            @start="start_direction"
             @stop="stop_direction"
             :size="120"
             :stickSize="40"
-            :throttle="100"
+            :throttle="40"
             :disabled="false"
             :sticky="false"
             :followCursor="false"
@@ -137,18 +135,25 @@ export default {
       object[key] = message;
     }
 
-    const start_throttle = () => console.log('start')
-    const stop_throttle = () => {dataObject.value.current_throttle=0}
+    let base = "mqttcar/"
+    const stop_throttle = () => {
+      dataObject.value.current_throttle=0
+      mqttUtil.send(base+"set_throttle", "0")
+    }
     const move_throttle = ({ x, y, direction, distance }) => {
       dataObject.value.current_throttle = round(y*100)
+      mqttUtil.send(base+"set_throttle", `${round(y*100)}`)
     }
-    const start_direction = () => console.log('start')
-    const stop_direction = () => {dataObject.value.current_rotation=0}
+    const stop_direction = () => {
+      dataObject.value.current_rotation=0
+      mqttUtil.send(base+"set_angle", "0")
+    }
     const move_direction = ({ x, y, direction, distance }) => {
       dataObject.value.current_rotation = round(x*30)
+      mqttUtil.send(base+"set_angle", `${round(x*30)}`)
     }
 
-    return {dataObject, width, stop_throttle, start_throttle, move_throttle, stop_direction, start_direction, move_direction}
+    return {dataObject, width, stop_throttle, move_throttle, stop_direction, move_direction}
   }
 }
 

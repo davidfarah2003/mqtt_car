@@ -194,7 +194,7 @@ section{
   justify-content: space-around;
   align-items: center;
 
-  margin-top: 40vh;
+  margin-top: 44vh;
 }
 
 .joystick {
@@ -212,7 +212,7 @@ section{
 
 .live_info_box{
   height: fit-content;
-  margin-top: 4vh;
+  margin-top: 3vh;
 }
 
 @media only screen and (min-width: 1000px) {

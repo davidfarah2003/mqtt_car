@@ -1,7 +1,5 @@
 <template>
 
-
-
   <section>
 
     <div class="live_info_box box_container">
@@ -37,13 +35,13 @@
           :needleTransitionDuration="200"
           :segments="5"
           :value = "dataObject.current_rotation"
-          :minValue="-30"
-          :maxValue="30"
+          :minValue="-90"
+          :maxValue="90"
           :currentValueText="'Angle: ${value} DEG'"
           needleColor="#D8DEE9"
           textColor="white"
           valueTextFontSize="0.85rem"
-          :customSegmentStops="[-30, -20, -10, 10, 20, 30]"
+          :customSegmentStops="[-90, -60, -40, 40, 60, 90]"
           :segmentColors='["#a1283a", "#d08770", "#3ca358", "#d08770", "#a1283a"]'
       />
     </div>
@@ -142,14 +140,14 @@ export default {
     }
     const move_throttle = ({ x, y, direction, distance }) => {
       dataObject.value.current_throttle = round(y*100)
-      mqttUtil.send(base+"move", `${round(y*100)<0 ? -1 : 1}`)
+      mqttUtil.send(base+"move", `${round(y*255)}`)
     }
     const stop_direction = () => {
       dataObject.value.current_rotation=0
       mqttUtil.send(base+"steer", '90')
     }
     const move_direction = ({ x, y, direction, distance }) => {
-      dataObject.value.current_rotation = round(x*30)
+      dataObject.value.current_rotation = round(x*90)
       mqttUtil.send(base+"steer", `${90+round(x*90)}`)
     }
 

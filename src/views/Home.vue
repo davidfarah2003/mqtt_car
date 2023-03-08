@@ -59,7 +59,7 @@
             @stop="stop_throttle"
             :size="120"
             :stickSize="40"
-            :throttle="40"
+            :throttle="30"
             :disabled="false"
             :sticky="false"
             :followCursor="false"
@@ -76,7 +76,7 @@
             @stop="stop_direction"
             :size="120"
             :stickSize="40"
-            :throttle="40"
+            :throttle="30"
             :disabled="false"
             :sticky="false"
             :followCursor="false"
@@ -135,22 +135,22 @@ export default {
       object[key] = message;
     }
 
-    let base = "mqttcar/"
+    let base = "mqtt_car/"
     const stop_throttle = () => {
       dataObject.value.current_throttle=0
-      mqttUtil.send(base+"set_throttle", "0")
+      mqttUtil.send(base+"move", '0')
     }
     const move_throttle = ({ x, y, direction, distance }) => {
       dataObject.value.current_throttle = round(y*100)
-      mqttUtil.send(base+"set_throttle", `${round(y*100)}`)
+      mqttUtil.send(base+"move", `${round(y*100)<0 ? -1 : 1}`)
     }
     const stop_direction = () => {
       dataObject.value.current_rotation=0
-      mqttUtil.send(base+"set_angle", "0")
+      mqttUtil.send(base+"steer", '90')
     }
     const move_direction = ({ x, y, direction, distance }) => {
       dataObject.value.current_rotation = round(x*30)
-      mqttUtil.send(base+"set_angle", `${round(x*30)}`)
+      mqttUtil.send(base+"steer", `${90+round(x*90)}`)
     }
 
     return {dataObject, width, stop_throttle, move_throttle, stop_direction, move_direction}

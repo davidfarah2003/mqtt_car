@@ -74,11 +74,11 @@
             @stop="stop_direction"
             :size="120"
             :stickSize="40"
-            :throttle="30"
+            :throttle="20"
             :disabled="false"
             :sticky="false"
             :followCursor="false"
-            aria-label="TEST"
+            aria-label="DIRECTION"
             stickImage="https://media.istockphoto.com/id/1419117748/photo/old-wall-texture-cement-dirty-gray-with-black-background-abstract-grey-and-silver-color.jpg?b=1&s=170667a&w=0&k=20&c=KI-m7WiMl2YDY5nSyAxxsta5ZPwjY1x6WwSCRdZq-VA="
             baseImage="https://texturelabs.org/wp-content/uploads/Texturelabs_Grunge_239thumbnail.jpg"
         />
@@ -148,7 +148,7 @@ export default {
     }
     const move_direction = ({ x, y, direction, distance }) => {
       dataObject.value.current_rotation = round(x*90)
-      mqttUtil.send(base+"steer", `${90+round(x*90)}`)
+      mqttUtil.send(base+"steer", `${90-round(x*90)}`)
     }
 
     return {dataObject, width, stop_throttle, move_throttle, stop_direction, move_direction}
